@@ -1,0 +1,84 @@
+---
+Debugger:
+  DebugThreshold: debug
+  TestMode: '0'
+Description: OTRS Web Service For Apiculus
+FrameworkVersion: 5.0.7
+Provider:
+  Operation:
+    createAccount:
+      Description: Creates A New Customer Company
+      MappingInbound:
+        Type: Simple
+      MappingOutbound:
+        Type: Simple
+      Type: Account::AccountCreate
+    createTicket:
+      Description: Create A Ticket In OTRS (Standard API)
+      MappingInbound:
+        Type: Simple
+      MappingOutbound:
+        Type: Simple
+      Type: Ticket::TicketCreate
+    createUser:
+      Description: Create A Customer User
+      MappingInbound:
+        Type: Simple
+      MappingOutbound:
+        Type: Simple
+      Type: User::UserCreate
+    getTicketDetails:
+      Description: Get Ticket Details Based On Ticket ID(s) In OTRS (Standard API)
+      MappingInbound:
+        Type: Simple
+      MappingOutbound:
+        Type: Simple
+      Type: Ticket::TicketGet
+    getTicketID:
+      Description: Get Ticket ID(s) Based On Search Parameters In OTRS (Standard API)
+      MappingInbound:
+        Type: Simple
+      MappingOutbound:
+        Type: Simple
+      Type: Ticket::TicketSearch
+    updateTicket:
+      Description: Update A Ticket In OTRS (Standard API)
+      MappingInbound:
+        Type: Simple
+      MappingOutbound:
+        Type: Simple
+      Type: Ticket::TicketUpdate
+  Transport:
+    Config:
+      KeepAlive: ''
+      MaxLength: '5242880'
+      RouteOperationMapping:
+        createAccount:
+          RequestMethod:
+          - POST
+          Route: /createAccount
+        createTicket:
+          RequestMethod:
+          - POST
+          Route: /createTicket
+        createUser:
+          RequestMethod:
+          - POST
+          Route: /createUser
+        getTicketDetails:
+          RequestMethod:
+          - GET
+          Route: /getTicketDetails/:TicketID
+        getTicketID:
+          RequestMethod:
+          - GET
+          Route: /getTicketID
+        updateTicket:
+          RequestMethod:
+          - PUT
+          Route: /updateTicket/:TicketID
+    Type: HTTP::REST
+RemoteSystem: ''
+Requester:
+  Transport:
+    Type: ''
